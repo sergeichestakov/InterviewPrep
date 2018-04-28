@@ -7,20 +7,25 @@
 
 class Solution:
     def kEmptySlots(self, flowers, k):
+        #Construct an array to store the days
+        days = [0] * len(flowers)
+        for day, pos in enumerate(flowers, 1)
+            days[pos - 1] = day
+
         length = len(flowers) - k - 1
         for index in range(length):
-            d1 = flowers[index]
-            d2 = flowers[index + k + 1]
+            d1 = days[index]
+            d2 = days[index + k + 1]
             found = True
 
             #All days in between must be > d1 & d2
             for day in range(1, k + 1):
-                inBetween = flowers[index + day]
+                inBetween = days[index + day]
                 if inBetween < d1 or inBetween < d2: #Flower has bloomed so break
                     found = False
                     break
 
             if found:
-                return d1 if d1 > d2 else d2 #largest of the two
+                return max(d1, d2) #largest of the two
 
         return -1
