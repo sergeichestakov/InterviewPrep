@@ -17,12 +17,12 @@ class Solution:
 
         #Sort by end time and count all conflicts
         intervals.sort(key=lambda x: x.end)
-        disjoint = [intervals[0]]
+        curr = intervals[0]
         count = 0
         for interval in intervals[1:]:
-            if interval.start < disjoint[-1].end: #Overlap so add to count and dont append
+            if interval.start < curr.end: #Overlap so add to count and dont update
                 count += 1
-            else: #add to list
-                disjoint.append(interval)
+            else: #Update
+                curr = interval
 
         return count
